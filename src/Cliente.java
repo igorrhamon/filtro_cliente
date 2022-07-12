@@ -28,8 +28,11 @@ public class Cliente {
         return this.sexo == Sexo.Masculino;
     }
 
-    public boolean filterSexo(Cliente.Sexo sexo) {
-        return this.sexo == sexo;
+    public Cliente filterSexo(Cliente.Sexo sexo) {
+        if (this.sexo == sexo) {
+            return this;
+        }
+        return null;
     }
 
     public boolean isFeminino() {
