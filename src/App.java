@@ -11,23 +11,28 @@ public class App {
         clientes.add(cliente1);
         clientes.add(cliente1);
         clientes.add(cliente1);
+        clientes.add(cliente2);        
+        clientes.add(cliente2);        
         clientes.add(cliente1);
-        clientes.add(cliente1);
-        clientes.add(cliente1);
-        clientes.add(cliente2);
-        clientes.add(cliente2);
-        clientes.add(cliente2);
-        clientes.add(cliente2);
-        clientes.add(cliente2);
         clientes.add(cliente1);
         clientes.add(cliente2);        
+        clientes.add(cliente2);        
 
+        System.out.print("Digite o sexo para buscar clientes (Masculino/Feminino): ");
         String s = System.console().readLine();
         Cliente.Sexo sexoEscolhido = Cliente.Sexo.valueOf(s);
-        List<Cliente> clientesFiltrados = filtrar(clientes, Cliente::isMasculino);
-        System.out.println("Clientes do sexo " + sexoEscolhido + ":");
+        List<Cliente> clientesFiltrados = new ArrayList<>();
+        if (sexoEscolhido == Cliente.Sexo.Feminino) {
+            clientesFiltrados = filtrar(clientes, Cliente::isFeminino);
+            System.out.println("Feminino");
+            return;
+        }else if(sexoEscolhido == Cliente.Sexo.Masculino){
+            clientesFiltrados = filtrar(clientes, Cliente::isMasculino);
+            Collections.sort(clientesFiltrados, (c1, c2) -> c1.getName().compareTo(c2.getName())); //ordena por nome
+        }else{
+            System.out.println("Sexo inválido");
+        }
         clientesFiltrados.forEach(System.out::println);
-        Collections.sort(clientesFiltrados, (c1, c2) -> c1.getName().compareTo(c2.getName()));
 
     }
 
